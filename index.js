@@ -3,10 +3,13 @@ const axios = require("axios");
 const express = require('express')
 
 const app = express()
-const url = 'https://www.goodreads.com/author/quotes/8330589.Miyamoto_Musashi'
+const url = 'https://www.goodreads.com/author/quotes/8330589.Miyamoto_Musashi?page='
 
-axios(url)
+
+for (let i =1; i < 9; i++){
+axios(url + `${i}`)
     .then(response => {
+        console.log(`--------- Page: ${i} -------`)
         const html = response.data
         const $ = cheerio.load(html)
         const quotes = []
@@ -32,6 +35,7 @@ axios(url)
         
 
     } )
+}
 
 const PORT = 3001
 app.listen(PORT)
