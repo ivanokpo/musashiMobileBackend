@@ -4,12 +4,12 @@ import { getRandomQuote } from "./db.js";
 const router = express.Router();
 
 //get recipe by id
-router.get("/quotes/:id", async (request, response) => {
+router.get("/quotes/random", async (request, response) => {
   //get id out of parameters found in request
-  const id = Number(request.params.id);
+  
 
   //call get request method from db.js
-  const { success, data } = await getRandomQuote(id);
+  const { success, data } = await getRandomQuote();
 
   if (success) {
     response.json({ data });
